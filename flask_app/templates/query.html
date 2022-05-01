@@ -1,0 +1,27 @@
+{% extends "header.html" %}
+{% block content %}
+{% if error_msg %}
+    <p>{{ error_msg }}</p>
+{% endif %}
+
+<div class="container-fluid">
+
+    <h2>Search Result for "{{query}}"</h2>
+    <br>
+    
+    {% for result in results %}
+    
+        <div class="card">
+            <div class="card-header">
+                <h2> {{result.name}} </h2>
+            </div>
+            <div class="card-body">
+            <p class="card-text">{{result.description}}</p>
+            <a href="{{ url_for('packages.package_detail', package_name=result.name) }}" class="btn btn-primary">Visit Package Page</a>
+            </div>
+        </div>
+    
+    {% endfor %}
+</div>
+
+{% endblock %}
